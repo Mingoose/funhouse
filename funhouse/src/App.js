@@ -13,6 +13,10 @@ export default function App() {
         <NavbarLink  to="/game">Game</NavbarLink>
         <br/>
         <NavbarLink to="/shop">Shop</NavbarLink>
+        <br/>
+        <NavbarLink to="/about">About</NavbarLink>
+        <br/>
+        <NavbarLink to="/contact">Contact</NavbarLink>
       </nav>
       <img src={funhouseGif} alt="Funhouse Gif" width="200" height="300"/>
     </div>

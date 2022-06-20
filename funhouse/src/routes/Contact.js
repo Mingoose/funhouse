@@ -1,5 +1,5 @@
 import { NavbarLink } from "../styles/NavStyle";
-export default function Shop() {
+export default function About() {
   return (
     <div>
       <h1>Funhouse</h1>
@@ -17,8 +17,8 @@ export default function Shop() {
         <NavbarLink to="/contact">Contact</NavbarLink>
       </nav>
       <main style={{ padding: "1rem 0" }}>
-        <h2>Shop</h2>
-      </main>
+      <h2>Contact</h2>
+    </main>
     </div>
   );
 }
