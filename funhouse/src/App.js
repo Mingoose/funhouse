@@ -1,5 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 import { NavbarLink } from "./styles/NavStyle";
+import funhouseGif from "./images/funhouse.gif";
 export default function App() {
   return (
     <div>
@@ -13,7 +14,7 @@ export default function App() {
         <br/>
         <NavbarLink to="/shop">Shop</NavbarLink>
       </nav>
-      <Outlet />
+      <img src={funhouseGif} alt="Funhouse Gif" width="200" height="300"/>
     </div>
   );
 }
