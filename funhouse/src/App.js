@@ -1,5 +1,5 @@
 import { Outlet, Link } from "react-router-dom";
-
+import { NavbarLink } from "./styles/NavStyle";
 export default function App() {
   return (
     <div>
@@ -7,9 +7,11 @@ export default function App() {
       <nav
         style={{ listStyleType: "none", padding: 0 }}
       >
-        <Link to="/">Home</Link> |{" "}
-        <Link to="/game">Game</Link> |{" "}
-        <Link to="/shop">Shop</Link>
+        <NavbarLink to="/">Home</NavbarLink>
+        <br/>
+        <NavbarLink  to="/game">Game</NavbarLink>
+        <br/>
+        <NavbarLink to="/shop">Shop</NavbarLink>
       </nav>
       <Outlet />
     </div>
