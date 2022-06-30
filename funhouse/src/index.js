@@ -1,18 +1,12 @@
 import ReactDOM from "react-dom/client";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
-import Game from "./routes/Game";
-import Shop from "./routes/Shop";
-import About from "./routes/About";
-import Contact from "./routes/Contact";
+import Game from "./components/Game";
+import Shop from "./components/Shop";
+import About from "./components/About";
+import Contact from "./components/Contact";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root")
-);
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <Routes>
@@ -21,7 +15,6 @@ root.render(
       <Route path="shop" element={<Shop />} />
       <Route path="about" element={<About />} />
       <Route path="contact" element={<Contact />} />
-      
     </Routes>
   </BrowserRouter>
 );
