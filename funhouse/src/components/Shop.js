@@ -1,7 +1,17 @@
 import { NavbarLink } from "../styles/NavStyle";
 import Product from "../components/Product.js";
+import BlueShirt from '../images/blue_shirt.png'
+import GreenShirt from '../images/green_shirt.png'
 
 export default function Shop() {
+
+  let blueshirt = { name: "blue_shirt", img: BlueShirt };
+  let greenshirt = { name: "green_shirt", img: GreenShirt};
+  let clothing = [blueshirt, greenshirt];
+
+  let all_clothing = clothing.map((cloth) => (
+    <Product name={cloth.name} img={cloth.img} />
+  ));
   return (
     <div>
       <h1>Funhouse</h1>
@@ -26,11 +36,3 @@ export default function Shop() {
     </div>
   );
 }
-
-let blueshirt = { name: "blue_shirt", img: "some-url" };
-
-let clothing = [blueshirt];
-
-let all_clothing = clothing.map((cloth) => (
-  <Product name={cloth.name} img={cloth.img} />
-));
