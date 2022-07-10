@@ -1,7 +1,6 @@
 export default function Product(props) {
-  const { name, img, onProductClick } = props;
-  console.log(name);
+  const { product, onProductClick } = props;
   return(
-    <img src={img} alt={name} height="200px" width="200px" onClick={() => onProductClick({name:name, img:img})}></img>
+    <img src={product.img} alt={product.name} height="200px" width="200px" onClick={() => onProductClick(product)}></img>
   )
 }

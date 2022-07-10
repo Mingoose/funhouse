@@ -5,10 +5,10 @@ import GreenShirt from '../images/green_shirt.png'
 import { useState } from "react";
 import { useEffect } from "react";
 import ProductPage from './ProductPage';
+const axios = require('axios');
+
 export default function Shop() {
-  let blueshirt = { name: "blue_shirt", img: BlueShirt };
-  let greenshirt = { name: "green_shirt", img: GreenShirt};
-  let clothing = [blueshirt, greenshirt];
+  const [clothingList, setClothingList] = useState([]);
   const [productOpen, setProductOpen] = useState(true);
   const [currentProduct, setCurrentProduct] = useState({})
   const onProductClick = (product) => {
@@ -24,8 +24,16 @@ export default function Shop() {
     setProductOpen(!productOpen);
   }, [currentProduct]);
 
-  let all_clothing = clothing.map((cloth) => (
-    <Product name={cloth.name} img={cloth.img} onProductClick={onProductClick} />
+  useEffect(() => {
+    axios.get('http://localhost:10000/product')
+    .then(res => {
+      console.log(res.data);
+      setClothingList(res.data);
+    });
+  }, []);
+
+  let all_clothing = clothingList.map((cloth) => (
+    <Product key={cloth.name} product={cloth} onProductClick={onProductClick} />
   ));
   if(productOpen === false){
     console.log(productOpen);
@@ -53,10 +61,8 @@ export default function Shop() {
       </div>
     );
   } else {
-    console.log('hello');
-    console.log(currentProduct);
     return(
-      <ProductPage name={currentProduct.name} img={currentProduct.img} onBackClick={onBackClick} />
+      <ProductPage product={currentProduct} onBackClick={onBackClick} />
     );
   }
 }

@@ -5,6 +5,7 @@ import Game from "./components/Game";
 import Shop from "./components/Shop";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import 'bootstrap/dist/css/bootstrap.css';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
