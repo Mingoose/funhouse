@@ -2,6 +2,7 @@ import { Dropdown, DropdownButton } from "react-bootstrap";
 import { useState, useContext } from "react";
 import { UserContext } from "../UserContext";
 import styled from "styled-components";
+import { BiArrowBack }  from "react-icons/bi";
 
 export default function Product(props) {
     const { product, onBackClick } = props;
@@ -32,7 +33,8 @@ export default function Product(props) {
     return(
       <Row>
         <Col>
-          <img src={product.img} alt={product.name} height="200px" width="200px" onClick={onBackClick}></img>
+          <BiArrowBack onClick={() => onBackClick()} size="70px"/>
+          <img src={product.img} alt={product.name} height="200px" width="200px"></img>
         </Col>
         <Col>
           <h3>{product.name}</h3>
