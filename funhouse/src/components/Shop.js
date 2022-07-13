@@ -1,27 +1,35 @@
-import { NavbarLink } from "../styles/NavStyle";
 import Product from "../components/Product.js";
-import BlueShirt from '../images/blue_shirt.png'
-import GreenShirt from '../images/green_shirt.png'
 import { useState } from "react";
 import { useEffect } from "react";
+import { useContext } from "react";
 import ProductPage from './ProductPage';
+import NavBar from "./NavBar";
+import { UserContext } from "../UserContext";
 const axios = require('axios');
 
 export default function Shop() {
   const [clothingList, setClothingList] = useState([]);
-  const [productOpen, setProductOpen] = useState(true);
+  const [productOpen, setProductOpen] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({})
+  const {user, setUser} = useContext(UserContext);
+
   const onProductClick = (product) => {
     setCurrentProduct(product);
   }
 
   const onBackClick = () => {
     setProductOpen(false);
+    setCurrentProduct({});
   }
 
   useEffect(() => {
-    console.log(currentProduct);
-    setProductOpen(!productOpen);
+    console.log('currentproduct', currentProduct);
+    if (Object.keys(currentProduct).length > 0) {
+      console.log('not empty');
+      setProductOpen(true);
+    } else {
+      setProductOpen(false);
+    }
   }, [currentProduct]);
 
   useEffect(() => {
@@ -30,6 +38,7 @@ export default function Shop() {
       console.log(res.data);
       setClothingList(res.data);
     });
+    setUser({cart: 'test clothing changed'});
   }, []);
 
   let all_clothing = clothingList.map((cloth) => (
@@ -41,17 +50,7 @@ export default function Shop() {
       <div>
         <h1>Funhouse</h1>
 
-        <nav style={{ listStyleType: "none", padding: 0 }}>
-          <NavbarLink to="/">Home</NavbarLink>
-          <br />
-          <NavbarLink to="/game">Game</NavbarLink>
-          <br />
-          <NavbarLink to="/shop">Shop</NavbarLink>
-          <br />
-          <NavbarLink to="/about">About</NavbarLink>
-          <br />
-          <NavbarLink to="/contact">Contact</NavbarLink>
-        </nav>
+        <NavBar/>
 
         <main style={{ padding: "1rem 0" }}>
           <h2>Shop</h2>
