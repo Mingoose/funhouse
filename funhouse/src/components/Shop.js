@@ -11,7 +11,6 @@ export default function Shop() {
   const [clothingList, setClothingList] = useState([]);
   const [productOpen, setProductOpen] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({})
-  const {user, setUser} = useContext(UserContext);
 
   const onProductClick = (product) => {
     setCurrentProduct(product);
@@ -38,7 +37,6 @@ export default function Shop() {
       console.log(res.data);
       setClothingList(res.data);
     });
-    setUser({cart: 'test clothing changed'});
   }, []);
 
   let all_clothing = clothingList.map((cloth) => (

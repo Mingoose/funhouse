@@ -1,6 +1,7 @@
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import { useState, useContext } from "react";
 import { UserContext } from "../UserContext";
+import styled from "styled-components";
 
 export default function Product(props) {
     const { product, onBackClick } = props;
@@ -10,24 +11,43 @@ export default function Product(props) {
         setCurrSize(size);
     }
     const addToCart = () => {
-        setUser({cart: [...user.cart, product.name]});
+        console.log(user);
+        let cart = user.cart;
+        cart.push(product.name);
+        setUser({cart});
     }
     console.log(user);
+    const Row = styled.div`
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    `;
+    const Col = styled.div`
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    `;
     return(
-      <div>
-         {product.name}
-         <img src={product.img} alt={product.name} height="200px" width="200px" onClick={() => onBackClick()}></img>
-         <DropdownButton id="dropdown-basic-button" title={currSize}>
-          <Dropdown.Item onClick={() => onSizeClick('XS')}>XSMALL</Dropdown.Item>
-          <Dropdown.Item onClick={() => onSizeClick('S')}>SMALL</Dropdown.Item>
-          <Dropdown.Item onClick={() => onSizeClick('M')}>MEDIUM</Dropdown.Item>
-          <Dropdown.Item onClick={() => onSizeClick('L')}>LARGE</Dropdown.Item>
-          <Dropdown.Item onClick={() => onSizeClick('XL')}>XLARGE</Dropdown.Item>
-        </DropdownButton>
-         price
-         description
-         <button onClick={() => addToCart(product.name)}> Add to Cart</button>
-      </div>
+      <Row>
+        <Col>
+          <img src={product.img} alt={product.name} height="200px" width="200px" onClick={onBackClick}></img>
+        </Col>
+        <Col>
+          <h3>{product.name}</h3>
+          <h4>{product.price}</h4>
+          <h4>{product.description}</h4>
+          <DropdownButton id="dropdown-basic-button" title={currSize}>
+            <Dropdown.Item onClick={() => onSizeClick('XS')}>XSMALL</Dropdown.Item>
+            <Dropdown.Item onClick={() => onSizeClick('S')}>SMALL</Dropdown.Item>
+            <Dropdown.Item onClick={() => onSizeClick('M')}>MEDIUM</Dropdown.Item>
+            <Dropdown.Item onClick={() => onSizeClick('L')}>LARGE</Dropdown.Item>
+            <Dropdown.Item onClick={() => onSizeClick('XL')}>XLARGE</Dropdown.Item>
+          </DropdownButton>
+          <button onClick={() => addToCart(product.name)}> Add to Cart </button>
+        </Col>
+      </Row>
     )
   }
   

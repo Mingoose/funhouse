@@ -3,7 +3,7 @@ import { UserContext } from "../UserContext";
 import { useContext } from "react";
 
 export default function Game() {
-    const user = useContext(UserContext);
+    const {user, setUser} = useContext(UserContext);
     console.log(user);
   return (
     <div>
