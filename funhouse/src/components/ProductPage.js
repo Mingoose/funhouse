@@ -14,42 +14,110 @@ export default function Product(props) {
     const addToCart = () => {
         console.log(user);
         let cart = user.cart;
-        cart.push(product.name);
+        cart.push([product, currSize]);
         setUser({cart});
     }
     console.log(user);
     const Row = styled.div`
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
     `;
     const Col = styled.div`
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
+        justify-content: right;
+        align-items: left;
     `;
+    const StyledDropdown = styled(Dropdown)`
+        background-color: #f5f5f5;
+        color: black;
+        margin-right: 5px;
+    `
+    const StyledDropdownToggle = styled(Dropdown.Toggle)`
+        background-color: white;
+        border-color: black;
+        border-radius: 0;
+        border-width: 2px;
+        width: 150px;
+        height: 30px;
+        color: black;
+        padding: 0;
+        &:hover {
+            background-color: #f5f5f5;
+            border-color: black;
+            color: black;
+        };
+        &[aria-expanded='true']::hover{
+          content: "Read this: ";
+        }
+    `
+    const StyledDropdownMenu = styled(Dropdown.Menu)`
+        background-color: #f5f5f5;
+        border-color: black;
+        border-radius: 0;
+    `
+    const StyledDropdownItem = styled(Dropdown.Item)`
+        &:active {
+            background-color: #f5f5f5;
+        }
+    `
+    const AddToBag = styled.button`
+        background-color: #505050;
+        border: none;
+        width: 150px;
+        height: 30px;
+        color: white;
+        margin-left: 5px;
+        &:active {
+            background-color: #707070;
+        }
+    `
+    const Banner = styled(Row)`
+    flex-direction: row;
+    justify-content: start;
+    `
+    const Body = styled(Row)`
+    align-items: start;
+    `
+    const ProductName = styled.h3`
+    font-family: "helvetica";
+    `
+    const ProductDescription = styled.p`
+    font-family: "helvetica";
+    `
     return(
-      <Row>
-        <Col>
+      <div>
+        <Banner>
           <BiArrowBack onClick={() => onBackClick()} size="70px"/>
-          <img src={product.img} alt={product.name} height="200px" width="200px"></img>
-        </Col>
-        <Col>
-          <h3>{product.name}</h3>
-          <h4>{product.price}</h4>
-          <h4>{product.description}</h4>
-          <DropdownButton id="dropdown-basic-button" title={currSize}>
-            <Dropdown.Item onClick={() => onSizeClick('XS')}>XSMALL</Dropdown.Item>
-            <Dropdown.Item onClick={() => onSizeClick('S')}>SMALL</Dropdown.Item>
-            <Dropdown.Item onClick={() => onSizeClick('M')}>MEDIUM</Dropdown.Item>
-            <Dropdown.Item onClick={() => onSizeClick('L')}>LARGE</Dropdown.Item>
-            <Dropdown.Item onClick={() => onSizeClick('XL')}>XLARGE</Dropdown.Item>
-          </DropdownButton>
-          <button onClick={() => addToCart(product.name)}> Add to Cart </button>
-        </Col>
-      </Row>
+        </Banner>
+        <Body>
+          <Col>
+            <img src={product.img} alt={product.name} height="400px" width="400px"></img>
+          </Col>
+          <Col>
+            <ProductName>{product.name.toUpperCase()}</ProductName>
+            <ProductDescription>{product.description}</ProductDescription>
+            <h4>{product.price}</h4>
+            <Row>
+              <StyledDropdown>
+                <StyledDropdownToggle variant="secondary">
+                  {currSize}
+                </StyledDropdownToggle>
+                <StyledDropdownMenu>
+                  <StyledDropdownItem onClick={() => onSizeClick('XS')}>XSMALL</StyledDropdownItem>
+                  <StyledDropdownItem onClick={() => onSizeClick('S')}>SMALL</StyledDropdownItem>
+                  <StyledDropdownItem onClick={() => onSizeClick('M')}>MEDIUM</StyledDropdownItem>
+                  <StyledDropdownItem onClick={() => onSizeClick('L')}>LARGE</StyledDropdownItem>
+                  <StyledDropdownItem onClick={() => onSizeClick('XL')}>XLARGE</StyledDropdownItem>
+                </StyledDropdownMenu>
+              </StyledDropdown>
+              <AddToBag onClick={() => addToCart(product)}> Add to Bag </AddToBag>
+            </Row>
+          </Col>
+        </Body>
+      </div>
     )
   }
   
